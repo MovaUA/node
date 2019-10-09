@@ -9,6 +9,7 @@ process.on('SIGINT', handleSignal)
 process.on('SIGTERM', handleSignal)
 
 function handleSignal(signal) {
+    console.log()
     console.log(`Received signal ${signal}`)
     console.log("bye bye")
     process.exit(0)
