@@ -23,7 +23,7 @@ let users = [
     {
         id: 2,
         name: 'master',
-        email: 'mater@of.puppets'
+        email: 'master@of.puppets'
     }
 ];
 
