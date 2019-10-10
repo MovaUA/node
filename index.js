@@ -14,10 +14,27 @@ function handleSignal(signal) {
     process.exit(0)
 }
 
+let users = [
+    {
+        id: 1,
+        name: 'Valeriy',
+        email: 'vmo@ciklum.com'
+    },
+    {
+        id: 2,
+        name: 'master',
+        email: 'mater@of.puppets'
+    }
+];
+
 router
-    .get('/', (ctx, next) => {
+    .get('/', ctx => {
         ctx.body = 'Welcome friend!';
-    });
+    })
+    .get('/users', ctx => {
+        ctx.body = users
+    })
+    ;
 
 app
     .use(router.routes())
