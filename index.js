@@ -23,4 +23,8 @@ app
     .use(router.routes())
     .use(router.allowedMethods());
 
-app.listen(3000);
+const port = 3000;
+
+app.listen(port);
+
+console.log(`server is listenning on port ${port}...`)
