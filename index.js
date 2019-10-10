@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const Router = require('@koa/router');
+const bodyparser = require('koa-bodyparser');
 
 const app = new Koa();
 const router = new Router();
@@ -34,14 +35,19 @@ router
     .get('/users', ctx => {
         ctx.body = users
     })
+    .post('/users', ctx => {
+        ctx.body = ctx.request.body;
+    })
     ;
 
 app
+    .use(bodyparser())
     .use(router.routes())
-    .use(router.allowedMethods());
+    .use(router.allowedMethods())
+    ;
 
 const port = 3000;
 
-app.listen(port);
-
-console.log(`server is listenning on port ${port}...`)
+app.listen(port, () => {
+    console.log(`listenning on port ${port}...`)
+});
