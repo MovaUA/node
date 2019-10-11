@@ -14,12 +14,20 @@ let users = [
 const getAll = ctx => ctx.body = users;
 
 const getOne = ctx => {
-    ctx.body = users.find(u => u.id == ctx.params.idÎ);
+    const user = users.find(u => u.id == ctx.params.id);
+    if (user) {
+        ctx.body = user;
+    }
 }
 
 const create = ctx => {
-    ctx.body = ctx.request.body;
-    users = users.concat(ctx.request.body);
+    const newUser = {
+        id: 1 + Math.max.apply(Math, users.map(u => u.id)),
+        name: ctx.request.body.name,
+        email: ctx.request.body.email
+    };
+    users = users.concat(newUser);
+    ctx.body = newUser;
 }
 
 module.exports = {
