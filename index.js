@@ -18,21 +18,21 @@ const home = ctx => ctx.body = 'Welcome friend!';
 
 router
     .get('/', home)
+    .post('/users', users.create)
     .get('/users', users.getAll)
     .get('/users/:id', users.getOne)
-    .post('/users', users.create)
     ;
 
 const traceRequest = async (ctx, next) => {
     let start = Date.now()
 
-    console.log("request:", ctx.request);
+    console.log(ctx.request.method, ctx.request.url);
 
     await next();
 
     let duration = Date.now() - start;
 
-    console.log(`${ctx.request.method} ${ctx.request.url} duration: ${duration}ms`);
+    console.log(`duration: ${duration}ms`);
 };
 
 
