@@ -2,6 +2,7 @@ const Koa = require('koa')
 const Router = require('@koa/router');
 const bodyparser = require('koa-bodyparser');
 const users = require('./users');
+const routes = require('./src/routes');
 
 const app = new Koa();
 const router = new Router();
@@ -15,6 +16,8 @@ process.on('SIGINT', handleSignal)
 process.on('SIGTERM', handleSignal)
 
 const home = ctx => ctx.body = 'Welcome friend!';
+
+routes.init(router);
 
 router
     .get('/', home)
