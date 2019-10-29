@@ -49,5 +49,11 @@ app
 const port = 3000;
 app.listen(
     port,
-    () => console.log(`listening on port ${port}...`)
+    err => {
+        if (err){
+            console.error(`Could not listen on port ${port}`, err)
+            return
+        }
+        console.log(`listening on port ${port}...`);
+    }
 );
